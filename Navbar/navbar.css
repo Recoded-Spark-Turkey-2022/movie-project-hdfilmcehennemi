@@ -5,9 +5,11 @@ ul {
 .navbar-logo-burger {
   display: flex;
   gap: 1rem;
+  height: 5px;
+  padding-bottom: 30px;
 }
 .burger div {
-  width: 20px;
+  width: 18px;
   height: 3px;
   margin: 5px;
   background-color: rebeccapurple;
