@@ -1,0 +1,77 @@
+ul {
+  list-style: none;
+  align-items: stretch;
+}
+
+.burger div {
+  width: 20px;
+  height: 3px;
+  margin: 5px;
+  background-color: rebeccapurple;
+}
+.burger {
+  display: none;
+}
+
+.navbar {
+  position: sticky;
+  background-color: red;
+  padding: 0.5rem, 1rem;
+  min-height: 16vh;
+}
+.navbar-div {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+.left-nav {
+  display: flex;
+  align-items: center;
+  letter-spacing: 3px;
+  gap: 2rem;
+  padding-top: 2vh;
+}
+#myInput {
+  background-color: aqua;
+}
+
+@media screen and (max-width: 768px) {
+  .left-nav {
+    position: absolute;
+    height: 92vh;
+    background-color: rgb(119, 129, 129);
+    left: 0px;
+    top: 16vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 0px;
+    transition: width 2s;
+  }
+
+  .burger {
+    display: block;
+    cursor: pointer;
+  }
+  .navbar-element {
+    z-index: -1;
+    opacity: 0;
+  }
+  .nav-active {
+    display: block;
+    width: 25%;
+  }
+  .navbar-element-active {
+    z-index: 0;
+    transition: opacity 3s;
+    opacity: 1;
+  }
+}
