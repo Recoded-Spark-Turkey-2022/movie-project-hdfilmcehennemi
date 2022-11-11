@@ -31,7 +31,16 @@ const burgerMenu = () => {
 };
 const renderNav = () => {
   NAV.innerHTML = `
-    <div class="navbar-div">
+  <div class="navbar-div">
+
+    <div class="navbar-logo-burger">
+      <div class="logo id="logo">logo</div>
+      <div class="burger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+      </div>
+    </div>
       
       <ul class="left-nav">
         <li class="navbar-element" id="HOME">HOME</li>
@@ -40,15 +49,6 @@ const renderNav = () => {
         <li class="navbar-element" id="Filter">Filter</li>
         <li class="navbar-element" id="About">About</li>
       </ul>
-      
-
-      <div class="burger">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-
-      <div class="logo id="logo">logo</div>
           
       <div class="search-nav">
         <input type="text" id="myInput" onkeyup="${searchFunc()}" placeholder="Search for names..">
