@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const PROFILE_BASE_URL = "http://image.tmdb.org/t/p/w185";
@@ -8,6 +8,7 @@ const CONTAINER = document.querySelector(".container");
 // Don't touch this function please
 const autorun = async () => {
   const movies = await fetchMovies();
+  console.log(movies);
   renderMovies(movies.results);
 };
 
@@ -21,13 +22,15 @@ const constructUrl = (path) => {
 // You may need to add to this function, definitely don't delete it.
 const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
+  console.log(movieRes);
   renderMovie(movieRes);
 };
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 const fetchMovies = async () => {
-  const url = constructUrl(`movie/now_playing`);
+  const url = constructUrl(`movie/top_rated`);
   const res = await fetch(url);
+  console.log(url);
   return res.json();
 };
 

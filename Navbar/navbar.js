@@ -20,7 +20,6 @@ const burgerMenu = () => {
   const nav = document.querySelector(".left-nav");
   const elements = document.querySelectorAll(".navbar-element");
   const elementsArr = [...elements];
-  console.log(elementsArr);
 
   burger.addEventListener("click", () => {
     nav.classList.toggle("nav-active");
