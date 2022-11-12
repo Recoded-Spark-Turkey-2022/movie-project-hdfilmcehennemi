@@ -11,7 +11,120 @@
 
 <body>
     <div class="container">
+       
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#"> Logo</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Actors</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">About</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Movies
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" id="popular" href="#">Popular</a>
+          <a class="dropdown-item" id="releaseDate" href="#">Latest</a>
+          <a class="dropdown-item" id="topRated" href="#">Top rated</a>
+          <a class="dropdown-item" id="nowPlaying" href="#">Now playing</a>
+          <a class="dropdown-item" id="Upcoming" href="#">Upcoming</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Genres
+        </a>
+        <div class="dropdown-menu"  id ="genres" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#" id="28">Action</a>
+              <a class="dropdown-item" href="#" id="878">Sci-Fi</a>
+              <a class="dropdown-item" href="#" id="12">Adventure</a>
+              <a class="dropdown-item" href="#" id="16">Animation</a>
+              <a class="dropdown-item" href="#" id="35">Comedy</a>
+              <a class="dropdown-item" href="#" id="80">Crime</a>
+              <a class="dropdown-item" href="#" id="99">Documentary</a>
+              <a class="dropdown-item" href="#" id="18">Drama</a>
+              <a class="dropdown-item" href="#" id="10751">Family</a>
+              <a class="dropdown-item" href="#" id="14">Fantasy</a>
+              <a class="dropdown-item" id="36" href="#">History</a>
+              <a class="dropdown-item" id="27" href="#">Horror</a>
+              <a class="dropdown-item" id="10402" href="#">Music</a>
+              <a class="dropdown-item" id="9648" href="#">Mystery</a>
+              <a class="dropdown-item" id="10749" href="#">Romance</a>
+              <a class="dropdown-item" id="878" href="#">TV Movie</a>
+              <a class="dropdown-item" id="53" href="#">Thriller</a>
+              <a class="dropdown-item" id="10752" href="#">War</a>
+              <a class="dropdown-item" id="37" href="#">Western</a>
+        </div>
+      </li>
+      <div class="actors-list" onclick="randerActors"></div>
+    </ul>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+  </div>
+
+</nav>
+ </nav>
     </div>
+    
+    <div>
+      <div id="container" class="container"></div>
+      <footer id="sticky-footer" class="py-3 bg-dark text-white-50">
+        <div class="text-center">
+          <h5>
+            Crafted by
+            <a
+              class="text-warning"
+              target="_blank"
+              href="https://github.com/"
+              >Furkan</a
+            >
+            <a
+              class="text-warning"
+              target="_blank"
+              href="https://github.com/"
+              >Sara</a>
+              <a
+              class="text-warning"
+              target="_blank"
+              href="https://github.com/"
+              >Cagla</a>
+            
+            &
+            <a
+              class="text-warning"
+              target="_blank"
+              href="https://github.com/"
+              >Seda</a>
+            
+          </h5>
+        </div>
+      </footer>
+        
+          <!-- Copyright -->
+          <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            © 2022 Copyright:
+            <a class="text-white" >HDFilmCehenm Team</a>
+          </div>
+          <!-- Copyright -->
+        </footer>
+    </div>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
     <script type="text/javascript" src="script.js"></script>
 </body>
 

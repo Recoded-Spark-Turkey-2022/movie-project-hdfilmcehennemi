@@ -16,7 +16,8 @@ const constructUrl = (path) => {
   return `${TMDB_BASE_URL}/${path}?api_key=${atob(
     "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
   )}`;
-};
+  };
+  
 
 // You may need to add to this function, definitely don't delete it.
 const movieDetails = async (movie) => {
@@ -38,19 +39,58 @@ const fetchMovie = async (movieId) => {
   return res.json();
 };
 
+const  fetchActor=async(personId) =>{
+  const url = constructUrl(`person/${personId}`);
+  const response = await fetch(url);
+  const data = await response.json();
+  return new Actor(data);
+}
+
+
+const popularActors=async()=> {
+  const url = constructUrl(`person/popular`);
+  const response = await fetch(url);
+  const data = await response.json();
+  return data.results.map((movie) => new Actors(movie));
+}
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
   movies.map((movie) => {
     const movieDiv = document.createElement("div");
+   // movieDiv.className="movie-container";
+    movieDiv.setAttribute(id ,'movie-container') ;
     movieDiv.innerHTML = `
-        <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
-      movie.title
-    } poster">
-        <h3>${movie.title}</h3>`;
+    <div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
+     movie.title
+   } poster" style="width:100%"></img> 
+     <div class="card-body">
+     <h3 class="card-title">${movie.title}</h3>
+     <a href="#" class="btn btn-primary">More detail</a>
+     </div>
+   </div>`;
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
+
+  
     CONTAINER.appendChild(movieDiv);
+  });
+};
+
+
+const renderActors = (actors) => {
+  actors.map((actor) => {
+    const actorDiv = createElement("actors-list");
+    actorDiv.innerHTML = `
+        <img src="${BACKDROP_BASE_URL + actor.backdrop_path}" alt="${
+      actor.name
+    } poster">
+        <h3>${actor.name}</h3>`;
+    actorDiv.addEventListener("click", () => {
+      actorDetails(actor);
+    });
+    CONTAINER.appendChild(actorDiv);
   });
 };
 
@@ -76,6 +116,41 @@ const renderMovie = (movie) => {
             <h3>Actors:</h3>
             <ul id="actors" class="list-unstyled"></ul>
     </div>`;
+    
 };
+const renderActor= (movie) => {
+  CONTAINER.innerHTML = `
+    <div class="row">
+        <div class="col-md-4">
+             <img id="actor-backdrop" src=${
+               BACKDROP_BASE_URL + actor.backdrop_path
+             }>
+        </div>
+        <div class="col-md-8">
+            <h2 id="actor-name">${actor.name}</h2>
+            <p id="movie-release-date"><b>Release Date:</b> ${
+              movie.release_date
+            }</p>
+            <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
+            <h3>Overview:</h3>
+            <p id="movie-overview">${movie.overview}</p>
+        </div>
+        </div>
+            <h3>Actors:</h3>
+            <ul id="actors" class="list-unstyled"></ul>
+    </div>`;
+    
+};
+
+ async function get(){
+  const res = await fetch("")
+  const Actors=await res.json()
+  console.log(Actors)
+   document.getElementsByClassName("actors-list").innerHTML= 
+   `<select>
+   ${Actors.map(actor =>`<option>${actor.name}</option>` )
+   }</select>`
+  }
+
 
 document.addEventListener("DOMContentLoaded", autorun);

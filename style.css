@@ -9,3 +9,10 @@
 #actors {
     margin: 24px 16px 0 0;
 }
+#movie-container{
+   
+    display: grid;
+    grid-gap: 1rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 1rem;
+}
