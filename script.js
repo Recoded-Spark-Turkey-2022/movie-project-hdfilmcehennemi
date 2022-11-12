@@ -38,6 +38,12 @@ const fetchMovie = async (movieId) => {
   const res = await fetch(url);
   return res.json();
 };
+const fetchActors = async (id) => {
+  const url = constructUrl(`movie/${id}/credits`);
+  const res = await fetch(url);
+  //console.log(res.json())
+  return res.json();
+};
 
 const  fetchActor=async(personId) =>{
   const url = constructUrl(`person/${personId}`);
@@ -58,7 +64,7 @@ const renderMovies = (movies) => {
   movies.map((movie) => {
     const movieDiv = document.createElement("div");
    // movieDiv.className="movie-container";
-    movieDiv.setAttribute(id ,'movie-container') ;
+   // movieDiv.setAttribute(id ,'movie-container') ;
     movieDiv.innerHTML = `
     <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
@@ -83,7 +89,7 @@ const renderActors = (actors) => {
   actors.map((actor) => {
     const actorDiv = createElement("actors-list");
     actorDiv.innerHTML = `
-        <img src="${BACKDROP_BASE_URL + actor.backdrop_path}" alt="${
+        <img src="${BACKDROP_BASE_URL + actor.profile_path}" alt="${
       actor.name
     } poster">
         <h3>${actor.name}</h3>`;
@@ -95,7 +101,7 @@ const renderActors = (actors) => {
 };
 
 // You'll need to play with this function in order to add features and enhance the style.
-const renderMovie = (movie) => {
+const renderMovie = (movie,actor) => {
   CONTAINER.innerHTML = `
     <div class="row">
         <div class="col-md-4">
@@ -115,29 +121,29 @@ const renderMovie = (movie) => {
         </div>
             <h3>Actors:</h3>
             <ul id="actors" class="list-unstyled"></ul>
-    </div>`;
+            </div>`;
+     const actor_list = document.getElementById("actors")
+     actor_list.append(renderActors(actors))
+    
     
 };
-const renderActor= (movie) => {
+const actorDetails= (actor) => {
   CONTAINER.innerHTML = `
     <div class="row">
         <div class="col-md-4">
              <img id="actor-backdrop" src=${
-               BACKDROP_BASE_URL + actor.backdrop_path
+               BACKDROP_BASE_URL + actor.profile_path
              }>
         </div>
         <div class="col-md-8">
             <h2 id="actor-name">${actor.name}</h2>
-            <p id="movie-release-date"><b>Release Date:</b> ${
-              movie.release_date
+            <p id="actor-gender"> ${
+              actor.gender
             }</p>
-            <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
+            <p id="actor-movies"><b>movies:</b> ${actor.movies}</p>
             <h3>Overview:</h3>
-            <p id="movie-overview">${movie.overview}</p>
+            <p id="actor-overview">${actor.overview}</p>
         </div>
-        </div>
-            <h3>Actors:</h3>
-            <ul id="actors" class="list-unstyled"></ul>
     </div>`;
     
 };
