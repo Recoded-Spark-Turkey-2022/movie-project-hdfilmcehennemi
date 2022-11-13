@@ -3,6 +3,13 @@
   padding: 0px;
   box-sizing: border-box;
 }
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+}
 body {
   background-color: rgb(7, 16, 19);
   color: rgb(255, 249, 249);

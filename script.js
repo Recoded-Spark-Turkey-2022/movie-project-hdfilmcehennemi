@@ -8,7 +8,6 @@ const CONTAINER = document.querySelector(".container");
 // Don't touch this function please
 const autorun = async () => {
   const movies = await fetchMovies();
-  console.log(movies);
   renderMovies(movies.results);
 };
 
@@ -28,7 +27,7 @@ const movieDetails = async (movie) => {
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 const fetchMovies = async () => {
-  const url = constructUrl(`movie/top_rated`);
+  const url = constructUrl(`movie/now_playing`);
   const res = await fetch(url);
   console.log(url);
   return res.json();
@@ -43,7 +42,9 @@ const fetchMovie = async (movieId) => {
 
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
+  CONTAINER.innerHTML = "";
   movies.map((movie) => {
+    console.log(movie);
     const movieDiv = document.createElement("div");
     movieDiv.innerHTML = `
         <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
