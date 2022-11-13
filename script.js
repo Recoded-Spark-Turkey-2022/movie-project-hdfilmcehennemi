@@ -24,6 +24,10 @@ const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
   renderMovie(movieRes);
 };
+const actorDetails = async (actor) => {
+  const actorRes = await fetchActor(actor.id);
+  renderActor(actorRes);
+};
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 const fetchMovies = async () => {
@@ -49,7 +53,7 @@ const  fetchActor=async(personId) =>{
   const url = constructUrl(`person/${personId}`);
   const response = await fetch(url);
   const data = await response.json();
-  return new Actor(data);
+  console.log(data)
 }
 
 
@@ -57,14 +61,14 @@ const popularActors=async()=> {
   const url = constructUrl(`person/popular`);
   const response = await fetch(url);
   const data = await response.json();
-  return data.results.map((movie) => new Actors(movie));
+  console.log(data)
 }
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
   movies.map((movie) => {
     const movieDiv = document.createElement("div");
-   // movieDiv.className="movie-container";
-   // movieDiv.setAttribute(id ,'movie-container') ;
+  // movieDiv.class="movie-container";
+    
     movieDiv.innerHTML = `
     <div class="card" style="width: 18rem;">
     <img class="card-img-top" src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
@@ -72,14 +76,15 @@ const renderMovies = (movies) => {
    } poster" style="width:100%"></img> 
      <div class="card-body">
      <h3 class="card-title">${movie.title}</h3>
-     <a href="#" class="btn btn-primary">More detail</a>
+     <a href="#" class="btn btn-secondary" style>More detail</a>
      </div>
    </div>`;
+  
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
 
-  
+    //movieDiv.setAttribute(id ,'movie-container');
     CONTAINER.appendChild(movieDiv);
   });
 };
@@ -101,7 +106,7 @@ const renderActors = (actors) => {
 };
 
 // You'll need to play with this function in order to add features and enhance the style.
-const renderMovie = (movie,actor) => {
+const renderMovie = (movie,actors) => {
   CONTAINER.innerHTML = `
     <div class="row">
         <div class="col-md-4">
@@ -127,7 +132,7 @@ const renderMovie = (movie,actor) => {
     
     
 };
-const actorDetails= (actor) => {
+const renderActor= (actor) => {
   CONTAINER.innerHTML = `
     <div class="row">
         <div class="col-md-4">
