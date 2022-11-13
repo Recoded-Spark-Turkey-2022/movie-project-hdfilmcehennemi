@@ -1,11 +1,5 @@
 const NAV = document.querySelector(".navbar");
 
-// search movie
-
-const searchFunc = () => {
-  return;
-};
-
 const burgerMenu = () => {
   const burger = document.querySelector(".burger");
   const nav = document.querySelector(".left-nav");
@@ -42,19 +36,19 @@ const renderNav = () => {
   <div class="dropdown-left-nav navbar-element">
     <button class="navbar--btn">Filter</button>
     <ul class="navbar-element-multi" id="Filter">
-    <li><a id="popularmovies" class="dropdown-menu-filter-item" href="#">Popular</a></li>
-    <li><a id="relasedatemovies" class="dropdown-menu-filter-item" href="#">Relase date</a></li>
-    <li><a id="topratedmovies" class="dropdown-menu-filter-item" href="#">Top rated</a></li>
-    <li><a id="nowplayingmovies" class="dropdown-menu-filter-item" href="#">Now playing</a></li>
-    <li><a id="upcomingmovies" class="dropdown-menu-filter-item" href="#">Up coming</a></li>
+    <li><a class="dropdown-menu-filter-item" href="#">Popular</a></li>
+    <li><a  class="dropdown-menu-filter-item" href="#">Relase date</a></li>
+    <li><a i class="dropdown-menu-filter-item" href="#">Top rated</a></li>
+    <li><a class="dropdown-menu-filter-item" href="#">Now playing</a></li>
+    <li><a  class="dropdown-menu-filter-item" href="#">Up coming</a></li>
     </ul>
   </div>
   <li class="navbar-element" "><a href="#" id="About">About</a></li>
   </ul>
 
-  <form class="d-flex text-dark " id="searchForm" role="search">
-  <input class="form-control me-2 rounded-pill " id="search" type="search" placeholder="I'm looking for.." aria-label="Search">
-  <button class="btn btn-outline-primary btn-light rounded-pill" type="submit">Search</button>
+  <form class="src-form " id="srcFrm">
+  <input class="src-input" id="src" type="search" placeholder="SEARCH">
+  <button class="btn-form" type="submit">Search</button>
   </form>
 
   </div>
@@ -83,7 +77,6 @@ const genresList = async () => {
     li.classList.add("dropdown-menu-genres-item");
     li.innerHTML = genres[i]["name"];
     genersNav.appendChild(li);
-    // on click event for each list item fetch the movies for that genre
     li.addEventListener("click", () => {
       genreFilter(genres[i].id);
     });
@@ -94,24 +87,17 @@ const genre = document.getElementById("Genres");
 console.log(genre);
 
 //search
-const searchForm = document.getElementById("searchForm");
-const searchInput = document.getElementById("search");
+const srcFrm = document.getElementById("srcFrm");
+console.log(srcFrm);
+const src = document.getElementById("src");
+console.log(src);
 
-// search on submit
-
-searchForm.addEventListener("submit", async (e) => {
+srcFrm.addEventListener("submit", async (e) => {
   //e.preventDefault();
-  const results = await searchRes(searchInput.value);
-  console.log(searchInput.value);
+  const results = await searchRes(src.value);
+  console.log(src.value);
   renderMovies(results);
 });
-const searchUrl = (search) => {
-  return `${TMDB_BASE_URL}/search/multi?api_key=${atob(
-    "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
-  )}&query=${search}`;
-};
-
-//fetch results
 
 const searchRes = async (value) => {
   const url = searchUrl(value);
@@ -119,4 +105,10 @@ const searchRes = async (value) => {
   const data = await res.json();
   console.log(data);
   return data.results;
+};
+
+const searchUrl = (search) => {
+  return `${TMDB_BASE_URL}/search/multi?api_key=${atob(
+    "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
+  )}&query=${search}`;
 };
