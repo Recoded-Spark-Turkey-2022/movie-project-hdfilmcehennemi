@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const PROFILE_BASE_URL = "http://image.tmdb.org/t/p/w185";
@@ -21,6 +21,7 @@ const constructUrl = (path) => {
 // You may need to add to this function, definitely don't delete it.
 const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
+  console.log(movieRes);
   renderMovie(movieRes);
 };
 
@@ -28,6 +29,7 @@ const movieDetails = async (movie) => {
 const fetchMovies = async () => {
   const url = constructUrl(`movie/now_playing`);
   const res = await fetch(url);
+  console.log(url);
   return res.json();
 };
 
@@ -40,7 +42,9 @@ const fetchMovie = async (movieId) => {
 
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
+  CONTAINER.innerHTML = "";
   movies.map((movie) => {
+    console.log(movie);
     const movieDiv = document.createElement("div");
     movieDiv.innerHTML = `
         <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
