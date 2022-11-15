@@ -23,6 +23,7 @@ ul {
   background-color: red;
   padding: 0.5rem, 1rem;
   min-height: 16vh;
+  z-index: 10;
 }
 .navbar-div {
   flex-grow: 1;

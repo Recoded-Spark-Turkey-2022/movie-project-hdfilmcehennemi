@@ -75,28 +75,27 @@ const genresList = async () => {
   for (let i in genres) {
     const li = document.createElement("li");
     li.classList.add("dropdown-menu-genres-item");
-    li.setAttribute("id", i);
+    li.setAttribute("id", genres[i]["id"]);
     li.innerHTML = genres[i]["name"];
-    genersNav.appendChild(li);
-    li.addEventListener("click", () => {
-      genreFilter(genres[i].id);
+    li.addEventListener("click", async () => {
+      const moviesByGenre = await fetchMoviesByGenre(genres[i]["id"]);
+      renderMoviesGen(moviesByGenre.results);
     });
+    genersNav.appendChild(li);
   }
 };
 genresList();
+
 const genre = document.getElementById("Genres");
-console.log(genre);
 
 //search
 const srcFrm = document.getElementById("srcFrm");
-console.log(srcFrm);
+
 const src = document.getElementById("src");
-console.log(src);
 
 srcFrm.addEventListener("submit", async (e) => {
   //e.preventDefault();
   const results = await searchRes(src.value);
-  console.log(src.value);
   renderMovies(results);
 });
 
@@ -104,7 +103,7 @@ const searchRes = async (value) => {
   const url = searchUrl(value);
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
+
   return data.results;
 };
 
