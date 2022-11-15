@@ -75,6 +75,7 @@ const genresList = async () => {
   for (let i in genres) {
     const li = document.createElement("li");
     li.classList.add("dropdown-menu-genres-item");
+    li.setAttribute("id", i);
     li.innerHTML = genres[i]["name"];
     genersNav.appendChild(li);
     li.addEventListener("click", () => {
