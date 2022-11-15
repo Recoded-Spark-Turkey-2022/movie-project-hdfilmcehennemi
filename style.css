@@ -81,10 +81,12 @@ img{
 #actors {
     margin: 24px 16px 0 0;
 }
-#card{
+.movie-container{
     display: grid;
+   
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
-    grid-template-columns: 1fr 1fr 1fr;
+    
     padding: 0.3srem;
 }
 .btn{
