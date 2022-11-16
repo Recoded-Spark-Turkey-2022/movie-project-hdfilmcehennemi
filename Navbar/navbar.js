@@ -36,11 +36,11 @@ const renderNav = () => {
   <div class="dropdown-left-nav navbar-element">
     <button class="navbar--btn">Filter</button>
     <ul class="navbar-element-multi" id="Filter">
-    <li><a class="dropdown-menu-filter-item" href="#">Popular</a></li>
-    <li><a  class="dropdown-menu-filter-item" href="#">Relase date</a></li>
-    <li><a i class="dropdown-menu-filter-item" href="#">Top rated</a></li>
-    <li><a class="dropdown-menu-filter-item" href="#">Now playing</a></li>
-    <li><a  class="dropdown-menu-filter-item" href="#">Up coming</a></li>
+    <li><a class="dropdown-menu-filter-item" id="popular" href="#">Popular</a></li>
+    <li><a class="dropdown-menu-filter-item" id="relase-date" href="#">Latest relase</a></li>
+    <li><a class="dropdown-menu-filter-item" id="top-rated" href="#">Top rated</a></li>
+    <li><a class="dropdown-menu-filter-item" id="now-playing" href="#">Now playing</a></li>
+    <li><a class="dropdown-menu-filter-item" id="up-coming" href="#">Up coming</a></li>
     </ul>
   </div>
   <li class="navbar-element" "><a href="#" id="About">About</a></li>
@@ -55,8 +55,14 @@ const renderNav = () => {
   `;
   burgerMenu();
 };
-
 renderNav();
+//filter items
+const popularMovie = document.getElementById("popular");
+const relaseDate = document.getElementById("relase-date");
+const topRated = document.getElementById("top-rated");
+const nowPlaying = document.getElementById("now-playing");
+const upComing = document.getElementById("up-coming");
+
 const HOME = document.getElementById("HOME");
 HOME.addEventListener("click", (e) => autorun());
 
@@ -79,14 +85,12 @@ const genresList = async () => {
     li.innerHTML = genres[i]["name"];
     li.addEventListener("click", async () => {
       const moviesByGenre = await fetchMoviesByGenre(genres[i]["id"]);
-      renderMoviesGen(moviesByGenre.results);
+      renderMovies(moviesByGenre.results);
     });
     genersNav.appendChild(li);
   }
 };
 genresList();
-
-const genre = document.getElementById("Genres");
 
 //search
 const srcFrm = document.getElementById("srcFrm");
