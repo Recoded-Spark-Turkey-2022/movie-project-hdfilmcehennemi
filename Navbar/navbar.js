@@ -16,7 +16,6 @@ const burgerMenu = () => {
 const renderNav = () => {
   NAV.innerHTML = `
   <div class="navbar-div">
-
   <div class="navbar-logo-burger">
   <div class="logo id="logo">logo</div>
   <div class="burger">
@@ -25,7 +24,6 @@ const renderNav = () => {
   <div class="line3"></div>
   </div>
   </div>
-
   <ul class="left-nav">
   <li class="navbar-element" ><a href="#" id="HOME">HOME</a></li>
   <li class="navbar-element" ><a href="#" id="Actors">Actors</a></li>
@@ -36,27 +34,31 @@ const renderNav = () => {
   <div class="dropdown-left-nav navbar-element">
     <button class="navbar--btn">Filter</button>
     <ul class="navbar-element-multi" id="Filter">
-    <li><a class="dropdown-menu-filter-item" href="#">Popular</a></li>
-    <li><a  class="dropdown-menu-filter-item" href="#">Relase date</a></li>
-    <li><a i class="dropdown-menu-filter-item" href="#">Top rated</a></li>
-    <li><a class="dropdown-menu-filter-item" href="#">Now playing</a></li>
-    <li><a  class="dropdown-menu-filter-item" href="#">Up coming</a></li>
+    <li><a class="dropdown-menu-filter-item" id="popular" href="#">Popular</a></li>
+    <li><a class="dropdown-menu-filter-item" id="relase-date" href="#">Latest relase</a></li>
+    <li><a class="dropdown-menu-filter-item" id="top-rated" href="#">Top rated</a></li>
+    <li><a class="dropdown-menu-filter-item" id="now-playing" href="#">Now playing</a></li>
+    <li><a class="dropdown-menu-filter-item" id="up-coming" href="#">Up coming</a></li>
     </ul>
   </div>
   <li class="navbar-element" "><a href="#" id="About">About</a></li>
   </ul>
-
   <form class="src-form " id="srcFrm">
   <input class="src-input" id="src" type="search" placeholder="SEARCH">
   <button class="btn-form" type="submit">Search</button>
   </form>
-
   </div>
   `;
   burgerMenu();
 };
-
 renderNav();
+//filter items
+const popularMovie = document.getElementById("popular");
+const relaseDate = document.getElementById("relase-date");
+const topRated = document.getElementById("top-rated");
+const nowPlaying = document.getElementById("now-playing");
+const upComing = document.getElementById("up-coming");
+
 const HOME = document.getElementById("HOME");
 HOME.addEventListener("click", (e) => autorun());
 
@@ -75,27 +77,25 @@ const genresList = async () => {
   for (let i in genres) {
     const li = document.createElement("li");
     li.classList.add("dropdown-menu-genres-item");
+    li.setAttribute("id", genres[i]["id"]);
     li.innerHTML = genres[i]["name"];
-    genersNav.appendChild(li);
-    li.addEventListener("click", () => {
-      genreFilter(genres[i].id);
+    li.addEventListener("click", async () => {
+      const moviesByGenre = await fetchMoviesByGenre(genres[i]["id"]);
+      renderMovies(moviesByGenre.results);
     });
+    genersNav.appendChild(li);
   }
 };
 genresList();
-const genre = document.getElementById("Genres");
-console.log(genre);
 
 //search
 const srcFrm = document.getElementById("srcFrm");
-console.log(srcFrm);
+
 const src = document.getElementById("src");
-console.log(src);
 
 srcFrm.addEventListener("submit", async (e) => {
   //e.preventDefault();
   const results = await searchRes(src.value);
-  console.log(src.value);
   renderMovies(results);
 });
 
@@ -103,7 +103,7 @@ const searchRes = async (value) => {
   const url = searchUrl(value);
   const res = await fetch(url);
   const data = await res.json();
-  console.log(data);
+
   return data.results;
 };
 

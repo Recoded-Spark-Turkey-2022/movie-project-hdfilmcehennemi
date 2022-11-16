@@ -12,16 +12,31 @@ const autorun = async () => {
 };
 
 // Don't touch this function please
+// const constructUrl = (path) => {
+//   return `${TMDB_BASE_URL}/${path}?api_key=${atob(
+//     "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
+//   )}`;
+// };
 const constructUrl = (path) => {
-  return `${TMDB_BASE_URL}/${path}?api_key=${atob(
-    "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
-  )}`;
+  let pathSplit = path.split("?");
+  let arr = [];
+  if (pathSplit.length > 1) {
+    arr = pathSplit[1].split("&");
+  }
+  let param = "";
+  arr.forEach((x, i) => {
+    if (i === 0) {
+      param += "&";
+    }
+    param += x;
+  });
+  return `${TMDB_BASE_URL}/${pathSplit[0]}?api_key=${
+    atob("NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI=") + param
+  }`;
 };
-
 // You may need to add to this function, definitely don't delete it.
 const movieDetails = async (movie) => {
   const movieRes = await fetchMovie(movie.id);
-  console.log(movieRes);
   renderMovie(movieRes);
 };
 
@@ -29,7 +44,6 @@ const movieDetails = async (movie) => {
 const fetchMovies = async () => {
   const url = constructUrl(`movie/now_playing`);
   const res = await fetch(url);
-  console.log(url);
   return res.json();
 };
 
@@ -43,14 +57,28 @@ const fetchMovie = async (movieId) => {
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
   CONTAINER.innerHTML = "";
-  movies.map((movie) => {
-    console.log(movie);
+  movies.forEach((movie, i) => {
+    let genres = "";
+    movie.genre_ids.forEach((genre) => {
+      genres += `${genre},`;
+    });
+
     const movieDiv = document.createElement("div");
+    movieDiv.setAttribute("data-categories", genres);
     movieDiv.innerHTML = `
-        <img src="${BACKDROP_BASE_URL + movie.backdrop_path}" alt="${
-      movie.title
-    } poster">
-        <h3>${movie.title}</h3>`;
+  <div key="${i}">
+      <div class="card " >
+      <div class="card-body">
+      <img class="card-img-top" src="${
+        BACKDROP_BASE_URL + movie.backdrop_path
+      }" alt="${movie.title} poster">
+      <h4 class="card-title">vote average ${movie.vote_average}  </h4>
+      <p class="card-text">${movie.title}</p>
+      <a href="#" class="btn btn-primary">See Profile</a>
+    </div>
+    </div>
+    </div>
+          `;
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
