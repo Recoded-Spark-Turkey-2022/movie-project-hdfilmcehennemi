@@ -34,7 +34,7 @@
 
 .single-card:hover {
   cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 20px 8px;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px 3px;
 }
 
 .single-card:hover img {
