@@ -46,7 +46,7 @@ const movieDetails = async (movie) => {
   renderMovie(movieRes);
 };
 const actorDetails = async (actor) => {
-  const actorRes = await fetchMovie(actor.id);
+  const actorRes = await fetchActors(actor.id);
 
   renderActors(actorRes);
 };
