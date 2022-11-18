@@ -100,10 +100,10 @@ const renderMovie = async (movie) => {
   }
   CONTAINER.innerHTML = `
     <div class="row justify-content-center">
-        <div class="col-md-4">
-          <img id="movie-backdrop" src=${pathImg}>
+        <div class="col-md-8 ">
+          <img id="movie-backdrop" class= "rounded" src=${pathImg}>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-4">
           <h2 id="movie-title">${movie.title}</h2>
           <p id="movie-release-date"><b>Release Date:</b> ${movie.release_date}</p>
           <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
@@ -153,7 +153,7 @@ const movieObj = async (id) => {
   const similarMovie = document.getElementById("similar");
   let personImg = "./no-img.jpg";
   for (let i = 0; i < 5; i++) {
-    if (moviesObj[i].profile_path !== null)
+    if (moviesObj[i].backdrop_path !== null)
       personImg = BACKDROP_BASE_URL + moviesObj[i].backdrop_path;
     console.log(moviesObj[i]);
     const movieSug = document.createElement("div");
