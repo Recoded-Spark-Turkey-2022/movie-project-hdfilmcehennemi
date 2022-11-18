@@ -13,11 +13,6 @@
   overflow: hidden;
   transition-duration: 0.5s;
 }
-.single-card > img {
-  width: 100%;
-  border-radius: inherit;
-  transition-duration: 0.3s;
-}
 .single-card > div {
   display: flex;
   align-items: center;
@@ -31,18 +26,23 @@
   font-family: "Sono", sans-serif;
   background-color: rgba(182, 168, 150, 0.1);
 }
+.single-card > img {
+  width: 100%;
+  border-radius: inherit;
+  transition-duration: 0.3s;
+}
 
-.single-card:hover > div {
-  top: 50%;
-  transform: translateY(-50%);
-  bottom: 0;
-  opacity: 1;
+.single-card:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 20px 8px;
 }
 
 .single-card:hover img {
   transform: scale(1.1);
 }
-.single-card:hover {
-  cursor: pointer;
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 0px 20px 8px;
+.single-card:hover > div {
+  top: 50%;
+  transform: translateY(-50%);
+  bottom: 0;
+  opacity: 1;
 }
