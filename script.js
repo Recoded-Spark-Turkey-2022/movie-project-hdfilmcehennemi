@@ -45,6 +45,11 @@ const movieDetails = async (movie) => {
 
   renderMovie(movieRes);
 };
+const actorDetails = async (actor) => {
+  const actorRes = await fetchMovie(actor.id);
+
+  renderActors(actorRes);
+};
 
 // This function is to fetch movies. You may need to add it or change some part in it in order to apply some of the features.
 const fetchMovies = async () => {
@@ -56,6 +61,12 @@ const fetchMovies = async () => {
 const fetchMoviesByGenre = async (genreId) => {
   const url = constructUrl(`discover/movie?with_genres=${genreId}`);
   console.log(url);
+  const res = await fetch(url);
+  return res.json();
+};
+const fetchActors = async () => {
+  const url = constructUrl(`person/popular`);
+  //console.log(url);
   const res = await fetch(url);
   return res.json();
 };
@@ -71,6 +82,7 @@ const fetchMovie = async (movieId) => {
 const renderMovies = (movies) => {
   cardRow.innerHTML = "";
   movies.forEach((movie, i) => {
+    //console.log(movie);
     let genres = "";
     movie.genre_ids.forEach((genre) => {
       genres += `${genre},`;
@@ -101,6 +113,36 @@ const renderMovies = (movies) => {
   });
 };
 
+const renderActors = async (actorsResults) => {
+  console.log(actorsResults);
+  const actorDiv = document.createElement("div");
+  actorsResults.forEach((actor) => {
+    actorDiv.innerHTML += `
+  <div >
+      <div class="card " >
+      <div class="card-body">
+      <img class="card-img-top" src="${
+        BACKDROP_BASE_URL + actor.profile_path
+      }" alt="${actor.name} poster">
+      <h4 class="card-title">vote average ${actor.popularity}  </h4>
+      <p class="card-text">${actor.known_for_department}</p>
+      <a href="#" class="btn btn-primary">See Profile</a>
+
+    </div>
+    </div>
+    </div>
+
+          `;
+
+    //console.log(actorDiv);
+    actorDiv.addEventListener("click", () => {
+      actorDetails(actor);
+    });
+    cardRow.appendChild(actorDiv);
+  });
+  return actorDiv;
+};
+
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovie = (movie) => {
   CONTAINER.innerHTML = `
@@ -123,6 +165,15 @@ const renderMovie = (movie) => {
             <h3>Actors:</h3>
             <ul id="actors" class="list-unstyled"></ul>
     </div>`;
+};
+
+const actorsList = async () => {
+  const actors = await fetchActors();
+  const actorsResults = await renderActors(actors.results);
+  // renderActors(actorsResults);
+  console.log(actorsResults);
+  cardRow.innerHTML = "";
+  cardRow.appendChild(actorsResults);
 };
 
 document.addEventListener("DOMContentLoaded", autorun);
