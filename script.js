@@ -56,7 +56,7 @@ const fetchMovie = async (movieId) => {
 
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovies = (movies) => {
-  CONTAINER.innerHTML = "";
+  CONTAINER.innerHTML = `<div class="row" id="bigCardContainer"></div>`;
   movies.forEach((movie, i) => {
     let genres = "";
     movie.genre_ids.forEach((genre) => {
@@ -65,26 +65,24 @@ const renderMovies = (movies) => {
 
     const movieDiv = document.createElement("div");
     movieDiv.setAttribute("data-categories", genres);
+    movieDiv.setAttribute("class", "col-12 col-md-6 col-lg-4");
     movieDiv.innerHTML = `
-  <div key="${i}">
-      <div class="card " >
-      <div class="card-body">
-      <img class="card-img-top" src="${
-        BACKDROP_BASE_URL + movie.backdrop_path
-      }" alt="${movie.title} poster">
-      <h4 class="card-title">vote average ${movie.vote_average}  </h4>
-      <p class="card-text">${movie.title}</p>
-      <a href="#" class="btn btn-primary">See Profile</a>
+    <div class="card mt-1 mb-1" "key="${i}">
+      <div class="card-body " >
+        <img class="card-img-top" src="${
+          BACKDROP_BASE_URL + movie.backdrop_path
+        }" alt="${movie.title} poster">
+        <h4 class="card-title">vote average ${movie.vote_average}  </h4>
+        <p class="card-text">${movie.title}</p>
 
+      </div>
     </div>
-    </div>
-    </div>
-
-          `;
+    `;
     movieDiv.addEventListener("click", () => {
       movieDetails(movie);
     });
-    CONTAINER.appendChild(movieDiv);
+    const bigCard = document.getElementById("bigCardContainer");
+    bigCard.appendChild(movieDiv);
   });
 };
 
