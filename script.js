@@ -81,8 +81,19 @@ const renderMovies = (movies) => {
   });
 };
 
+const direc = async (id) => {
+  const url = constructUrl(`movie/${id}/credits`);
+  const res = await fetch(url);
+  const data = await res.json();
+  let person = data.crew.find(
+    (person) => person.known_for_department === "Directing"
+  );
+  return person.name;
+};
+
 // You'll need to play with this function in order to add features and enhance the style.
-const renderMovie = (movie) => {
+const renderMovie = async (movie) => {
+  let director = await direc(movie.id);
   let pathImg = BACKDROP_BASE_URL + movie.backdrop_path;
   if (movie.backdrop_path === null) {
     pathImg = "./no-img.jpg";
@@ -96,13 +107,69 @@ const renderMovie = (movie) => {
           <h2 id="movie-title">${movie.title}</h2>
           <p id="movie-release-date"><b>Release Date:</b> ${movie.release_date}</p>
           <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
+          <h2 >Director:</h2>
+            <p>${director}</p>
           <h3>Overview:</h3>
           <p id="movie-overview">${movie.overview}</p>
         </div>
         </div>
-            <h3>Actors:</h3>
-            <ul id="actors" class="list-unstyled"></ul>
+          <h3>Actors:</h3>
+          <div id="actors" class="row"></div>
+          <h3>Related movies:</h3>
+          <div class="similar-movies row" id="similar"></div>
     </div>`;
+  castObj(movie.id);
+  movieObj(movie.id);
 };
+const castObj = async (id) => {
+  const url = constructUrl(`movie/${id}/credits`);
+  const res = await fetch(url);
+  const data = await res.json();
+  let cast = data.crew;
+  const actorUl = document.getElementById("actors");
+  let personImg = "./no-img-person.png";
+  for (let i = 0; i < 5; i++) {
+    if (cast[i].profile_path !== null)
+      personImg = PROFILE_BASE_URL + cast[i].profile_path;
 
+    const actorsLi = document.createElement("div");
+    actorsLi.innerHTML = `
+      <img src="${personImg}" alt="${cast[i].title} poster  ">
+      <div class=" text-center">
+        <h5>${cast[i].name}</h5>
+        <span> popularity: ${cast[i].popularity}/10</span>
+      </div>
+    `;
+    actorsLi.classList.add("col-md-5", "col-lg-2", "card", "m-2", "p-0");
+    actorsLi.classList.add("single-card");
+    actorUl.appendChild(actorsLi);
+  }
+};
+const movieObj = async (id) => {
+  const url = constructUrl(`movie/${id}/similar`);
+  const res = await fetch(url);
+  const data = await res.json();
+  let moviesObj = data.results;
+  const similarMovie = document.getElementById("similar");
+  let personImg = "./no-img.jpg";
+  for (let i = 0; i < 5; i++) {
+    if (moviesObj[i].profile_path !== null)
+      personImg = BACKDROP_BASE_URL + moviesObj[i].backdrop_path;
+    console.log(moviesObj[i]);
+    const movieSug = document.createElement("div");
+    movieSug.innerHTML = `
+      <img src="${personImg}" alt="${moviesObj[i].title} poster  ">
+      <div class=" text-center">
+        <h5>${moviesObj[i].title}</h5>
+        <span> popularity: ${moviesObj[i].popularity}/10</span>
+      </div>
+    `;
+    movieSug.classList.add("col-md-5", "col-lg-2", "card", "m-2", "p-0");
+    movieSug.classList.add("single-card");
+    similarMovie.appendChild(movieSug);
+    movieSug.addEventListener("click", () => {
+      movieDetails(moviesObj[i]);
+    });
+  }
+};
 document.addEventListener("DOMContentLoaded", autorun);

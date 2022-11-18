@@ -58,6 +58,9 @@ const upComing = document.getElementById("up-coming");
 const HOME = document.getElementById("HOME");
 HOME.addEventListener("click", (e) => autorun());
 
+const About = document.getElementById("About");
+About.addEventListener("click", (e) => renderAbout());
+
 //genres
 const genersNav = document.getElementById("Genres");
 
