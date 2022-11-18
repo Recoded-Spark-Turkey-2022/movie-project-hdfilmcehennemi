@@ -125,7 +125,7 @@ const castObj = async (id) => {
   const url = constructUrl(`movie/${id}/credits`);
   const res = await fetch(url);
   const data = await res.json();
-  let cast = data.crew;
+  let cast = data.cast;
   const actorUl = document.getElementById("actors");
   let personImg = "./no-img-person.png";
   for (let i = 0; i < 5; i++) {
