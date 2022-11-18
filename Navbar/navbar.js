@@ -4,8 +4,8 @@ const renderNav = () => {
   NAV.innerHTML = `
   
 
-<div class="container-fluid">
-  <div class="logo navbar-brand" id="logo">logo</div>
+<div class="container-fluid px-5 mt-3 mb-4">
+  <div class="logo navbar-brand" id="logo"><img src="../Designbolts-Free-Multimedia-Film.ico" alt="icon" class="rounded-0 h-w-icon" /></div>
   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -73,6 +73,7 @@ const genresList = async () => {
     const li = document.createElement("li");
     li.classList.add("dropdown-menu-genres-item");
     li.setAttribute("id", genres[i]["id"]);
+    li.setAttribute("class", "dropdown-item");
     li.innerHTML = genres[i]["name"];
     li.addEventListener("click", async () => {
       const moviesByGenre = await fetchMoviesByGenre(genres[i]["id"]);
