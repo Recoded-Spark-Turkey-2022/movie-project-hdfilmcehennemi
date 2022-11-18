@@ -11,12 +11,6 @@ const autorun = async () => {
   renderMovies(movies.results);
 };
 
-// Don't touch this function please
-// const constructUrl = (path) => {
-//   return `${TMDB_BASE_URL}/${path}?api_key=${atob(
-//     "NTQyMDAzOTE4NzY5ZGY1MDA4M2ExM2M0MTViYmM2MDI="
-//   )}`;
-// };
 const constructUrl = (path) => {
   let pathSplit = path.split("?");
   let arr = [];
@@ -65,13 +59,15 @@ const renderMovies = (movies) => {
 
     const movieDiv = document.createElement("div");
     movieDiv.setAttribute("data-categories", genres);
-    movieDiv.setAttribute("class", "col-12 col-md-6 col-lg-4");
+    movieDiv.setAttribute("class", "col-12 col-md-6 col-lg-4 ");
+    let pathImg = BACKDROP_BASE_URL + movie.backdrop_path;
+    if (movie.backdrop_path === null) {
+      pathImg = "./no-img.jpg";
+    }
     movieDiv.innerHTML = `
     <div class="card mt-1 mb-1" "key="${i}">
-      <div class="card-body " >
-        <img class="card-img-top" src="${
-          BACKDROP_BASE_URL + movie.backdrop_path
-        }" alt="${movie.title} poster">
+    <img class="card-img-top" src="${pathImg}" alt="${movie.title} poster">
+      <div class="card-body text-center" >
         <h4 class="card-title">vote average ${movie.vote_average}  </h4>
         <p class="card-text">${movie.title}</p>
 
@@ -88,18 +84,18 @@ const renderMovies = (movies) => {
 
 // You'll need to play with this function in order to add features and enhance the style.
 const renderMovie = (movie) => {
+  let pathImg = BACKDROP_BASE_URL + movie.backdrop_path;
+  if (movie.backdrop_path === null) {
+    pathImg = "./no-img.jpg";
+  }
   CONTAINER.innerHTML = `
-    <div class="row">
+    <div class="row justify-content-center">
         <div class="col-md-4">
-             <img id="movie-backdrop" src=${
-               BACKDROP_BASE_URL + movie.backdrop_path
-             }>
+             <img id="movie-backdrop" src=${pathImg}>
         </div>
         <div class="col-md-8">
             <h2 id="movie-title">${movie.title}</h2>
-            <p id="movie-release-date"><b>Release Date:</b> ${
-              movie.release_date
-            }</p>
+            <p id="movie-release-date"><b>Release Date:</b> ${movie.release_date}</p>
             <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
             <h3>Overview:</h3>
             <p id="movie-overview">${movie.overview}</p>
