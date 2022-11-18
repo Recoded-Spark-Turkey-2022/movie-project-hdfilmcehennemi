@@ -65,12 +65,11 @@ const renderMovies = (movies) => {
       pathImg = "./no-img.jpg";
     }
     movieDiv.innerHTML = `
-    <div class="card mt-1 mb-1" "key="${i}">
-    <img class="card-img-top" src="${pathImg}" alt="${movie.title} poster">
+    <div class="single-card card mt-1 mb-1" "key="${i}">
+      <img class="card-img-top" src="${pathImg}" alt="${movie.title} poster">
       <div class="card-body text-center" >
-        <h4 class="card-title">vote average ${movie.vote_average}  </h4>
+        <h4 class="card-title">VOTE AVERAGE ${movie.vote_average}  </h4>
         <p class="card-text">${movie.title}</p>
-
       </div>
     </div>
     `;
@@ -91,14 +90,14 @@ const renderMovie = (movie) => {
   CONTAINER.innerHTML = `
     <div class="row justify-content-center">
         <div class="col-md-4">
-             <img id="movie-backdrop" src=${pathImg}>
+          <img id="movie-backdrop" src=${pathImg}>
         </div>
         <div class="col-md-8">
-            <h2 id="movie-title">${movie.title}</h2>
-            <p id="movie-release-date"><b>Release Date:</b> ${movie.release_date}</p>
-            <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
-            <h3>Overview:</h3>
-            <p id="movie-overview">${movie.overview}</p>
+          <h2 id="movie-title">${movie.title}</h2>
+          <p id="movie-release-date"><b>Release Date:</b> ${movie.release_date}</p>
+          <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
+          <h3>Overview:</h3>
+          <p id="movie-overview">${movie.overview}</p>
         </div>
         </div>
             <h3>Actors:</h3>
