@@ -88,7 +88,7 @@ const direc = async (id) => {
   let person = data.crew.find(
     (person) => person.known_for_department === "Directing"
   );
-  return person.name;
+  return person;
 };
 
 // You'll need to play with this function in order to add features and enhance the style.
