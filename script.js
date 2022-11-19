@@ -99,20 +99,22 @@ const renderMovie = async (movie) => {
     pathImg = "./no-img.jpg";
   }
   CONTAINER.innerHTML = `
-    <div class="row justify-content-center">
+    <div class="row container-sm justify-content-center">
+        
         <div class="col-md-8 ">
-          <img id="movie-backdrop" class= "rounded" src=${pathImg}>
+          <img class= "img-fluid rounded " src=${pathImg}>
         </div>
         <div class="col-md-4">
-          <h2 id="movie-title">${movie.title}</h2>
-          <p id="movie-release-date"><b>Release Date:</b> ${movie.release_date}</p>
-          <p id="movie-runtime"><b>Runtime:</b> ${movie.runtime} Minutes</p>
-          <h2 >Director:</h2>
+          <h2 >${movie.title}</h2>
+          <p><b>Release Date:</b> ${movie.release_date}</p>
+          <p><b>Runtime:</b> ${movie.runtime} Minutes</p>
+          <h2>Director:</h2>
             <p>${director}</p>
           <h3>Overview:</h3>
-          <p id="movie-overview">${movie.overview}</p>
+          <p>${movie.overview}</p>
         </div>
         </div>
+        
           <h3>Actors:</h3>
           <div id="actors" class="row"></div>
           <h3>Related movies:</h3>
@@ -143,6 +145,9 @@ const castObj = async (id) => {
     actorsLi.classList.add("col-md-5", "col-lg-2", "card", "m-2", "p-0");
     actorsLi.classList.add("single-card");
     actorUl.appendChild(actorsLi);
+    actorsLi.addEventListener("click", () => {
+      actorDetails(cast[i].id);
+    });
   }
 };
 const movieObj = async (id) => {
@@ -155,7 +160,6 @@ const movieObj = async (id) => {
   for (let i = 0; i < 5; i++) {
     if (moviesObj[i].backdrop_path !== null)
       personImg = BACKDROP_BASE_URL + moviesObj[i].backdrop_path;
-    console.log(moviesObj[i]);
     const movieSug = document.createElement("div");
     movieSug.innerHTML = `
       <img src="${personImg}" alt="${moviesObj[i].title} poster  ">

@@ -61,6 +61,9 @@ HOME.addEventListener("click", (e) => autorun());
 const About = document.getElementById("About");
 About.addEventListener("click", (e) => renderAbout());
 
+const Actors = document.getElementById("Actors");
+Actors.addEventListener("click", (e) => actorsList());
+
 //genres
 const genersNav = document.getElementById("Genres");
 
