@@ -1,55 +1,46 @@
 const NAV = document.querySelector(".navbar");
 
-const burgerMenu = () => {
-  const burger = document.querySelector(".burger");
-  const nav = document.querySelector(".left-nav");
-  const elements = document.querySelectorAll(".navbar-element");
-  const elementsArr = [...elements];
-
-  burger.addEventListener("click", () => {
-    nav.classList.toggle("nav-active");
-    elementsArr.map((element) => {
-      element.classList.toggle("navbar-element-active");
-    });
-  });
-};
 const renderNav = () => {
-  NAV.innerHTML = `
-  <div class="navbar-div">
-  <div class="navbar-logo-burger">
-  <div class="logo id="logo">logo</div>
-  <div class="burger">
-  <div class="line1"></div>
-  <div class="line2"></div>
-  <div class="line3"></div>
+  NAV.innerHTML = ` 
+<div class="container-fluid px-5 mt-3 mb-4">
+  <div>
+    <div class="logo navbar-brand" id="logo"><img src="../Designbolts-Free-Multimedia-Film.ico" alt="icon" class="rounded-0 h-w-icon" /></div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
   </div>
-  </div>
-  <ul class="left-nav">
-  <li class="navbar-element" ><a href="#" id="HOME">HOME</a></li>
-  <li class="navbar-element" ><a href="#" id="Actors">Actors</a></li>
-  <div class="dropdown-left-nav navbar-element">
-    <button class="navbar--btn" >Genres</button>
-    <ul class="navbar-element-multi" id="Genres" ></ul>
-  </div>
-  <div class="dropdown-left-nav navbar-element">
-    <button class="navbar--btn">Filter</button>
-    <ul class="navbar-element-multi" id="Filter">
-    <li><a class="dropdown-menu-filter-item" id="popular" href="#">Popular</a></li>
-    <li><a class="dropdown-menu-filter-item" id="relase-date" href="#">Latest relase</a></li>
-    <li><a class="dropdown-menu-filter-item" id="top-rated" href="#">Top rated</a></li>
-    <li><a class="dropdown-menu-filter-item" id="now-playing" href="#">Now playing</a></li>
-    <li><a class="dropdown-menu-filter-item" id="up-coming" href="#">Up coming</a></li>
-    </ul>
-  </div>
-  <li class="navbar-element" "><a href="#" id="About">About</a></li>
+  <div class="collapse navbar-collapse " id="navbarScroll">
+  <ul class="left-nav navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 40rem;">
+    <li class="navbar-element nav-item" ><a class="nav-link active" aria-current="page" href="#" id="HOME">HOME</a></li>
+    <li class="navbar-element nav-item" ><a class="nav-link active" aria-current="page" href="#" id="Actors">Actors</a></li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Genres
+      </a>  
+      <ul class="navbar-element-multi dropdown-menu" id="Genres" ></ul>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Filter
+      </a> 
+      <ul class="navbar-element-multi dropdown-menu" id="Filter">
+        <li><a class="dropdown-menu-filter-item dropdown-item" id="popular" href="#">Popular</a></li>
+        <li><a class="dropdown-menu-filter-item dropdown-item" id="relase-date" href="#">Latest relase</a></li>
+        <li><a class="dropdown-menu-filter-item dropdown-item" id="top-rated" href="#">Top rated</a></li>
+        <li><a class="dropdown-menu-filter-item dropdown-item" id="now-playing" href="#">Now playing</a></li>
+        <li><a class="dropdown-menu-filter-item dropdown-item" id="up-coming" href="#">Up coming</a></li>
+      </ul>
+    </li>
+    <li class="navbar-element" "><a class="nav-link active" aria-current="page" href="#" id="About">About</a></li>
   </ul>
-  <form class="src-form " id="srcFrm">
-  <input class="src-input" id="src" type="search" placeholder="SEARCH">
-  <button class="btn-form" type="submit">Search</button>
-  </form>
+  
+  </div>
+    <form class="src-form d-flex" id="srcFrm" role="Search">
+      <input class="src-input form-control me-2" id="src" type="search" placeholder="SEARCH">
+      <button class="btn-form btn btn-outline-success" type="submit">Search</button>
+    </form>
   </div>
   `;
-  burgerMenu();
 };
 renderNav();
 //filter items
@@ -61,6 +52,9 @@ const upComing = document.getElementById("up-coming");
 
 const HOME = document.getElementById("HOME");
 HOME.addEventListener("click", (e) => autorun());
+
+const About = document.getElementById("About");
+About.addEventListener("click", (e) => renderAbout());
 
 //genres
 const genersNav = document.getElementById("Genres");
@@ -78,6 +72,7 @@ const genresList = async () => {
     const li = document.createElement("li");
     li.classList.add("dropdown-menu-genres-item");
     li.setAttribute("id", genres[i]["id"]);
+    li.setAttribute("class", "dropdown-item");
     li.innerHTML = genres[i]["name"];
     li.addEventListener("click", async () => {
       const moviesByGenre = await fetchMoviesByGenre(genres[i]["id"]);
