@@ -2,21 +2,24 @@ const renderAbout = () => {
   CONTAINER.innerHTML = "";
   const aboutDiv = document.createElement("div");
   aboutDiv.innerHTML = `
-    <div class="welcome-message">
-      <h2>Welcome</h2>
-      <h3>Thank You To Choose Our Amazing Movies App>
-      <i class="ghost-icon fa-solid fa-ghost"></i>
-    </div>
-    <div class="about-pro">
-        <div class="text-container">
-            <p class="mt-5 fw-bold">
-              If you are bored and looking for funny, you are in the correct place. 
-            </p>
-            <p class="mt-1">
-              This website has been created by "HDFilmCehenem " team.
-            </p>
-            
+  <div class="about">
+  <h3>Welcome to HDfilmcehennemi  </h3>
+  <p>If you've come this far, you know what this site is about.</p>
+  <h3>Brought to you by:</h3>
+  <div class="flexGitHubNames">
+      <div>
+          <p class="h3">Furkan Ataş: <a target="_blank" href="https://github.com/LittleLebowski" class ="badge badge-info">Github</a></p>
       </div>
-    </div> `;
+      <div>
+          <p class="h3">Seda Ünal: <a target="_blank" href="https://github.com/justsedaunal" class ="badge badge-info">Github</a></p>
+      </div>
+      <div>
+      <p class="h3">Sara Sallat: <a target="_blank" href="https://github.com/sara-sallat" class ="badge badge-info">Github</a></p>
+  </div>
+  <div>
+  <p class="h3">Çağla Bircan: <a target="_blank" href="https://github.com/caglabircan" class ="badge badge-info">Github</a></p>
+</div>
+  </div>
+</div>`;
   CONTAINER.appendChild(aboutDiv);
 };

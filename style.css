@@ -53,3 +53,19 @@
 .actors-list-movie {
   display: flex;
 }
+
+h3 {
+  color: #162c3e;
+  background-color: #e3f2fd;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.flexGitHubNames {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
