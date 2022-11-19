@@ -109,7 +109,7 @@ const renderMovie = async (movie) => {
           <p><b>Release Date:</b> ${movie.release_date}</p>
           <p><b>Runtime:</b> ${movie.runtime} Minutes</p>
           <h2>Director:</h2>
-            <p>${director}</p>
+            <p>${director.name}</p>
           <h3>Overview:</h3>
           <p>${movie.overview}</p>
         </div>
