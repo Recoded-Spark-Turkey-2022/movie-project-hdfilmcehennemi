@@ -1,11 +1,71 @@
-#movie-backdrop {
-    width: 100%;
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Sono", sans-serif;
 }
 
 .container {
-    padding-top: 32px;
+  margin-top: 2rem;
+}
+.h-w-icon {
+  width: 50px;
+  height: 50px;
 }
 
-#actors {
-    margin: 24px 16px 0 0;
+.single-card {
+  transition-duration: 0.5s;
+  overflow: hidden;
+}
+.single-card > div {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  color: #cbcbcb;
+  font-weight: bold;
+
+  background-color: rgba(215, 128, 15, 0.96);
+  opacity: 0;
+}
+.single-card > img {
+  border-radius: inherit;
+  width: 100%;
+  transition-duration: 0.3s;
+}
+
+.single-card:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 0px 20px 3px;
+}
+
+.single-card:hover img {
+  transform: scale(1.1);
+}
+.single-card:hover > div {
+  transform: translateY(-50%);
+  top: 50%;
+  opacity: 1;
+}
+
+.actors-list-movie {
+  display: flex;
+}
+
+h3 {
+  color: #162c3e;
+  background-color: #e3f2fd;
+  display: inline-block;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.flexGitHubNames {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
 }
