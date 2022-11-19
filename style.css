@@ -57,3 +57,35 @@
 #Genres {
   cursor: pointer;
 }
+
+/*footer*/
+#footer{
+  margin-top: 30px; ;
+  height: 70px;
+  color: hsl(222deg 25% 10%);
+  background-image: linear-gradient(to right top, #131720, #161d2b, #192336, #1b2942, #1e2f4e, #223457, #263861, #2b3d6a, #334173, #3c457b, #464984, #504c8c);  
+}
+
+/*social media position*/
+.socaialmedsection{
+  padding-top: 10px;
+}
+
+.navbarsections {
+  transition: .3s;
+}
+
+/*social media icons*/
+.socaialmediabutton {
+  width: 25px;
+  height: 25px;
+  padding-left: 5px;
+  position: relative;   
+  transition-duration: 0.3s; 
+  cursor: pointer;
+}
+/*social media icons hover*/
+.socaialmediabutton:hover{
+  transform: scale(1.2);
+  -webkit-transform: scale(1.1);
+}
